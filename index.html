@@ -107,12 +107,6 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center gap-2.5 self-end sm:self-center">
-                <a href="https://wa.me/60162864598?text=Salam%20sejahtera%2C%20Cikgu%20Rafeeq.%20Saya%20ada%20pertanyaan%20tentang%20penghantaran%20bahan%20untuk%20SPECCO."
-                   target="_blank" rel="noopener noreferrer"
-                   class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
-                    <i class="fab fa-whatsapp text-base"></i>
-                    <span>Hubungi Cikgu Rafeeq</span>
-                </a>
                 <button onclick="switchMainView('admin')" id="nav-admin-btn"
                         class="bg-white/15 hover:bg-white/25 text-white border border-white/25 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl transition flex items-center gap-2">
                     <i class="fas fa-user-shield"></i>
@@ -151,9 +145,9 @@
         <!-- ==================== VIEW 1: BORANG PENGHANTARAN BAHAN ==================== -->
         <section id="view-submit" class="space-y-6">
             
-            <!-- Category Selector (2 Main Tabs + Anugerah Kumpulan Popular) -->
+            <!-- Category Selector (Semarak Seni, English Carnival, Fashion Show, Kumpulan Popular) -->
             <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200/80">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-100">
                     <div>
                         <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
                             <i class="fas fa-layer-group text-specco-600"></i>
@@ -163,22 +157,27 @@
                             Sila pilih tab pertandingan di bawah untuk memuat naik bahan audio atau video persembahan sekolah anda.
                         </p>
                     </div>
-                    <!-- 2 Main Tabs + Popular Award Selector -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 bg-slate-100 p-1.5 rounded-xl">
+                    <!-- 4 Category Tabs Selector -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 bg-slate-100 p-1.5 rounded-xl">
                         <button type="button" onclick="selectCategory('semarak_seni')" id="cat-btn-semarak_seni"
-                                class="subtab-active px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2">
+                                class="subtab-active px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2">
                             <i class="fas fa-theater-masks"></i>
                             <span>1. Semarak Seni</span>
                         </button>
                         <button type="button" onclick="selectCategory('english_carnival')" id="cat-btn-english_carnival"
-                                class="px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
+                                class="px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
                             <i class="fas fa-microphone-alt"></i>
                             <span>2. English Carnival</span>
                         </button>
+                        <button type="button" onclick="selectCategory('fashion_show')" id="cat-btn-fashion_show"
+                                class="px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-tshirt text-pink-500"></i>
+                            <span>3. Fashion Show</span>
+                        </button>
                         <button type="button" onclick="selectCategory('kumpulan_popular')" id="cat-btn-kumpulan_popular"
-                                class="px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
+                                class="px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
                             <i class="fas fa-star text-amber-500"></i>
-                            <span>3. Kumpulan Popular</span>
+                            <span>4. Kumpulan Popular</span>
                         </button>
                     </div>
                 </div>
@@ -204,8 +203,8 @@
                                         Lengkapkan maklumat sekolah, guru pengiring dan muat naik fail persembahan.
                                     </p>
                                 </div>
-                                <div id="aspect-ratio-pill" class="shrink-0 bg-rose-600 text-white px-3 py-2 rounded-xl text-center shadow-sm">
-                                    <div class="text-[10px] font-bold uppercase tracking-wider opacity-90">Saiz Video</div>
+                                <div id="aspect-ratio-pill" class="shrink-0 bg-rose-600 text-white px-3.5 py-2 rounded-xl text-center shadow-sm">
+                                    <div id="aspect-ratio-label" class="text-[10px] font-bold uppercase tracking-wider opacity-90">Aspek Ratio (Landscape)</div>
                                     <div id="aspect-ratio-text" class="text-lg font-black leading-none mt-0.5">16 : 9</div>
                                 </div>
                             </div>
@@ -292,7 +291,7 @@
                                             Klik untuk pilih fail atau seret fail ke sini
                                         </div>
                                         <p class="text-xs text-slate-500" id="upload-helper-text">
-                                            Menyokong fail MP4 (Saiz Video 16:9) atau fail Audio MP3/WAV
+                                            Menyokong fail MP4 (Aspek Ratio 16:9 Landscape) atau fail Audio MP3/WAV
                                         </p>
                                     </div>
 
@@ -367,10 +366,10 @@
                         <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-sm space-y-4">
                             <div class="flex items-center justify-between">
                                 <span class="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
-                                    <i class="fas fa-exclamation-triangle"></i> Peringatan Saiz Video
+                                    <i class="fas fa-exclamation-triangle"></i> Peringatan Aspek Ratio
                                 </span>
                                 <span id="guide-ratio-badge" class="text-xs font-extrabold px-2.5 py-0.5 rounded bg-rose-600 text-white">
-                                    WAJIB 16:9
+                                    WAJIB 16:9 (LANDSCAPE)
                                 </span>
                             </div>
 
@@ -378,7 +377,7 @@
                             <div class="flex items-center justify-center py-3">
                                 <div id="ratio-visual-box" class="w-48 h-28 border-2 border-dashed border-sky-400 bg-sky-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300">
                                     <i id="ratio-visual-icon" class="fas fa-tv text-2xl text-sky-400 mb-1"></i>
-                                    <span id="ratio-visual-title" class="text-sm font-black text-white">LANDSKAP 16:9</span>
+                                    <span id="ratio-visual-title" class="text-sm font-black text-white">ASPEK RATIO 16:9 (LANDSCAPE)</span>
                                     <span id="ratio-visual-res" class="text-[11px] text-sky-300">1920 x 1080 px (HD)</span>
                                 </div>
                             </div>
@@ -386,15 +385,19 @@
                             <div class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
                                 <div class="flex items-center justify-between">
                                     <span class="text-slate-400">1. Semarak Seni:</span>
-                                    <span class="font-bold text-sky-300">Saiz Video 16:9 (Melintang)</span>
+                                    <span class="font-bold text-sky-300">Aspek Ratio 16:9 (Landscape)</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-slate-400">2. English Carnival (Jazz Chant):</span>
-                                    <span class="font-bold text-sky-300">Saiz Video 16:9 (Melintang)</span>
+                                    <span class="font-bold text-sky-300">Aspek Ratio 16:9 (Landscape)</span>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-slate-400">3. Anugerah Kumpulan Popular:</span>
-                                    <span class="font-bold text-amber-300">Saiz Video 9:16 (Menegak)</span>
+                                    <span class="text-slate-400">3. Fashion Show:</span>
+                                    <span class="font-bold text-pink-300">Aspek Ratio 16:9 (Landscape)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">4. Anugerah Kumpulan Popular:</span>
+                                    <span class="font-bold text-amber-300">Aspek Ratio 9:16 (Maks 1 Minit)</span>
                                 </div>
                             </div>
                         </div>
@@ -442,13 +445,14 @@
                             <option value="ALL">Semua Kategori</option>
                             <option value="Semarak Seni">Semarak Seni</option>
                             <option value="English Carnival - Jazz Chant">English Carnival - Jazz Chant</option>
+                            <option value="Fashion Show">Fashion Show</option>
                             <option value="Anugerah Kumpulan Popular">Anugerah Kumpulan Popular</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Summary Stats Pills -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 my-4">
                     <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                         <div class="text-xs text-slate-500 font-medium">Jumlah Penghantaran</div>
                         <div id="stat-total" class="text-2xl font-black text-slate-900 mt-0.5">0</div>
@@ -460,6 +464,10 @@
                     <div class="p-3.5 rounded-xl bg-indigo-50 border border-indigo-200">
                         <div class="text-xs text-indigo-700 font-medium">English Carnival</div>
                         <div id="stat-english" class="text-2xl font-black text-indigo-900 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-pink-50 border border-pink-200">
+                        <div class="text-xs text-pink-700 font-medium">Fashion Show</div>
+                        <div id="stat-fashion" class="text-2xl font-black text-pink-900 mt-0.5">0</div>
                     </div>
                     <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
                         <div class="text-xs text-amber-800 font-medium">Kumpulan Popular</div>
@@ -659,9 +667,10 @@
                             <input type="text" id="admin-add-phone" placeholder="No. Telefon" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
                         </div>
                         <select id="admin-add-category" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white">
-                            <option value="Semarak Seni">Semarak Seni (16:9)</option>
-                            <option value="English Carnival - Jazz Chant">English Carnival - Jazz Chant (16:9)</option>
-                            <option value="Anugerah Kumpulan Popular">Anugerah Kumpulan Popular (9:16)</option>
+                            <option value="Semarak Seni">Semarak Seni (16:9 Landscape)</option>
+                            <option value="English Carnival - Jazz Chant">English Carnival - Jazz Chant (16:9 Landscape)</option>
+                            <option value="Fashion Show">Fashion Show (16:9 Landscape)</option>
+                            <option value="Anugerah Kumpulan Popular">Anugerah Kumpulan Popular (9:16 • Maks 1 Minit)</option>
                         </select>
                         <button onclick="adminManualAddSchool()" class="w-full bg-specco-600 hover:bg-specco-700 text-white font-bold py-2.5 rounded-xl text-xs sm:text-sm transition">
                             Tambah Ke Senarai Sekolah
@@ -866,8 +875,10 @@
                 badge: 'TAB 1 : SEMARAK SENI',
                 title: 'Borang Penghantaran Bahan Semarak Seni 6',
                 ratio: '16:9',
-                orientation: 'LANDSKAP 16:9',
-                resolution: '1920 x 1080 px (Melintang)',
+                ratioLabel: 'Aspek Ratio (Landscape)',
+                guideBadge: 'WAJIB 16:9 (LANDSCAPE)',
+                orientation: 'ASPEK RATIO 16:9 (LANDSCAPE)',
+                resolution: '1920 x 1080 px (Landscape)',
                 allowAudioOnly: true,
                 note: 'Nota : Sekiranya audio sahaja, maka background persembahan secara automatik menggunakan <strong>Banner Utama Semarak Seni 6</strong>.'
             },
@@ -877,21 +888,38 @@
                 badge: 'TAB 2 : ENGLISH CARNIVAL - JAZZ CHANT',
                 title: 'Borang Penghantaran Bahan English Carnival (Jazz Chant)',
                 ratio: '16:9',
-                orientation: 'LANDSKAP 16:9',
-                resolution: '1920 x 1080 px (Melintang)',
+                ratioLabel: 'Aspek Ratio (Landscape)',
+                guideBadge: 'WAJIB 16:9 (LANDSCAPE)',
+                orientation: 'ASPEK RATIO 16:9 (LANDSCAPE)',
+                resolution: '1920 x 1080 px (Landscape)',
                 allowAudioOnly: true,
                 note: 'Nota : Sekiranya audio sahaja, maka background persembahan secara automatik menggunakan <strong>Banner Utama English Carnival</strong>.'
+            },
+            fashion_show: {
+                id: 'fashion_show',
+                name: 'Fashion Show',
+                badge: 'TAB 3 : FASHION SHOW',
+                title: 'Borang Penghantaran Bahan Fashion Show',
+                ratio: '16:9',
+                ratioLabel: 'Aspek Ratio (Landscape)',
+                guideBadge: 'WAJIB 16:9 (LANDSCAPE)',
+                orientation: 'ASPEK RATIO 16:9 (LANDSCAPE)',
+                resolution: '1920 x 1080 px (Landscape)',
+                allowAudioOnly: true,
+                note: 'Nota : Sekiranya audio sahaja, maka background persembahan secara automatik menggunakan <strong>Banner Utama Fashion Show</strong>.'
             },
             kumpulan_popular: {
                 id: 'kumpulan_popular',
                 name: 'Anugerah Kumpulan Popular',
-                badge: 'KATEGORI 3 : ANUGERAH KUMPULAN POPULAR',
+                badge: 'TAB 4 : ANUGERAH KUMPULAN POPULAR',
                 title: 'Borang Penghantaran Video Anugerah Kumpulan Popular',
                 ratio: '9:16',
-                orientation: 'POTRET / MENEGAK 9:16',
-                resolution: '1080 x 1920 px (Menegak / Reels / TikTok)',
+                ratioLabel: 'Aspek Ratio (Portrait)',
+                guideBadge: 'WAJIB 9:16 & MAKS 1 MINIT',
+                orientation: 'ASPEK RATIO 9:16 (PORTRAIT)',
+                resolution: '1080 x 1920 px • Maksimum Masa: 1 Minit',
                 allowAudioOnly: false,
-                note: 'PERINGATAN PENTING : Kategori Anugerah Kumpulan Popular memerlukan <strong>SAIZ VIDEO 9:16 (Menegak)</strong>.'
+                note: 'PERINGATAN PENTING : Kategori Anugerah Kumpulan Popular memerlukan <strong>ASPEK RATIO VIDEO 9:16 (Menegak)</strong>.<br><span class="inline-block mt-1.5 px-2.5 py-1 rounded-lg bg-rose-600 text-white font-extrabold text-xs">NOTA : MAKSIMUM MASA VIDEO ADALAH 1 MINIT UNTUK ANUGERAH KUMPULAN POPULAR.</span>'
             }
         };
 
@@ -950,20 +978,22 @@
             document.getElementById('selected-category-input').value = catKey;
 
             // Update button active styles
-            ['semarak_seni', 'english_carnival', 'kumpulan_popular'].forEach(k => {
+            ['semarak_seni', 'english_carnival', 'fashion_show', 'kumpulan_popular'].forEach(k => {
                 const btn = document.getElementById(`cat-btn-${k}`);
+                if (!btn) return;
                 if (k === catKey) {
-                    btn.className = 'subtab-active px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2';
+                    btn.className = 'subtab-active px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2';
                 } else {
-                    btn.className = 'px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2';
+                    btn.className = 'px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2';
                 }
             });
 
             // Update form headers & reminders
             document.getElementById('form-cat-badge').textContent = config.badge;
             document.getElementById('form-cat-title').textContent = config.title;
+            document.getElementById('aspect-ratio-label').textContent = config.ratioLabel;
             document.getElementById('aspect-ratio-text').textContent = config.ratio;
-            document.getElementById('guide-ratio-badge').textContent = `WAJIB ${config.ratio}`;
+            document.getElementById('guide-ratio-badge').textContent = config.guideBadge;
             document.getElementById('auto-banner-note').innerHTML = config.note;
             document.getElementById('ratio-visual-title').textContent = config.orientation;
             document.getElementById('ratio-visual-res').textContent = config.resolution;
@@ -971,10 +1001,10 @@
             const visualBox = document.getElementById('ratio-visual-box');
             const visualIcon = document.getElementById('ratio-visual-icon');
             if (config.ratio === '9:16') {
-                visualBox.className = 'w-28 h-48 border-2 border-dashed border-amber-400 bg-amber-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300';
+                visualBox.className = 'w-28 h-48 border-2 border-dashed border-amber-400 bg-amber-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300 text-center';
                 visualIcon.className = 'fas fa-mobile-alt text-2xl text-amber-400 mb-1';
             } else {
-                visualBox.className = 'w-48 h-28 border-2 border-dashed border-sky-400 bg-sky-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300';
+                visualBox.className = 'w-48 h-28 border-2 border-dashed border-sky-400 bg-sky-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300 text-center';
                 visualIcon.className = 'fas fa-tv text-2xl text-sky-400 mb-1';
             }
 
@@ -1002,9 +1032,12 @@
             if (mode.includes('Audio Sahaja')) {
                 formatLabel.textContent = 'Fail Audio MP3 / WAV / M4A';
                 helper.textContent = `Menyokong fail Audio (MP3/WAV). Paparan latar belakang automatik menggunakan Banner Utama ${config.name}.`;
+            } else if (catKey === 'kumpulan_popular') {
+                formatLabel.textContent = `Video MP4 (Aspek Ratio ${config.ratio} • Maks 1 Minit)`;
+                helper.textContent = `Menyokong fail Video MP4 (PERINGATAN: Aspek Ratio ${config.ratio} & Maksimum Masa Video adalah 1 Minit).`;
             } else {
-                formatLabel.textContent = `Video MP4 (Saiz ${config.ratio})`;
-                helper.textContent = `Menyokong fail Video MP4 (PERINGATAN: Saiz Video mestilah ${config.ratio}).`;
+                formatLabel.textContent = `Video MP4 (Aspek Ratio ${config.ratio} Landscape)`;
+                helper.textContent = `Menyokong fail Video MP4 (PERINGATAN: Aspek Ratio (Landscape) mestilah ${config.ratio}).`;
             }
         };
 
@@ -1072,6 +1105,7 @@
                 window.URL.revokeObjectURL(video.src);
                 const w = video.videoWidth;
                 const h = video.videoHeight;
+                const durationSec = Math.round(video.duration || 0);
                 if (!w || !h) return;
 
                 const ratioNum = w / h;
@@ -1082,13 +1116,21 @@
                 fb.classList.remove('hidden');
                 if (requiredRatio === '16:9' && is16by9) {
                     fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-emerald-50 text-emerald-800 border border-emerald-200';
-                    fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (16:9 Melintang)</strong> — Menepati spesifikasi pertandingan!`;
+                    fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (Aspek Ratio 16:9 Landscape)</strong> — Menepati spesifikasi pertandingan!`;
                 } else if (requiredRatio === '9:16' && is9by16) {
-                    fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-emerald-50 text-emerald-800 border border-emerald-200';
-                    fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (9:16 Menegak)</strong> — Menepati spesifikasi Anugerah Kumpulan Popular!`;
+                    if (durationSec > 60) {
+                        fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-rose-50 text-rose-800 border border-rose-300';
+                        fb.innerHTML = `<i class="fas fa-exclamation-circle mr-1"></i> Perhatian: Tempoh video ialah <strong>${durationSec} saat</strong>. Maksimum masa video adalah <strong>1 minit (60 saat)</strong> untuk Anugerah Kumpulan Popular!`;
+                    } else {
+                        fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-emerald-50 text-emerald-800 border border-emerald-200';
+                        fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (9:16)</strong> • Tempoh: <strong>${durationSec}s (≤ 1 Minit)</strong> — Menepati spesifikasi Anugerah Kumpulan Popular!`;
+                    }
                 } else {
+                    const extraDurationWarn = (catKey === 'kumpulan_popular' && durationSec > 60)
+                        ? ` Tempoh video (${durationSec}s) juga melebihi had maksimum 1 minit!`
+                        : '';
                     fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-amber-50 text-amber-900 border border-amber-300';
-                    fb.innerHTML = `<i class="fas fa-exclamation-triangle mr-1"></i> Perhatian: Resolusi video anda ialah <strong>${w}x${h}</strong>. Kategori ini menetapkan saiz <strong>${requiredRatio}</strong>.`;
+                    fb.innerHTML = `<i class="fas fa-exclamation-triangle mr-1"></i> Perhatian: Resolusi video anda ialah <strong>${w}x${h}</strong>. Kategori ini menetapkan Aspek Ratio <strong>${requiredRatio === '16:9' ? '16:9 (Landscape)' : '9:16'}</strong>.${extraDurationWarn}`;
                 }
             };
             video.src = URL.createObjectURL(file);
@@ -1260,6 +1302,8 @@
             document.getElementById('stat-total').textContent = submissions.length;
             document.getElementById('stat-semarak').textContent = submissions.filter(s => s.category === 'Semarak Seni').length;
             document.getElementById('stat-english').textContent = submissions.filter(s => s.category === 'English Carnival - Jazz Chant').length;
+            const fashionStatEl = document.getElementById('stat-fashion');
+            if (fashionStatEl) fashionStatEl.textContent = submissions.filter(s => s.category === 'Fashion Show').length;
             document.getElementById('stat-popular').textContent = submissions.filter(s => s.category === 'Anugerah Kumpulan Popular').length;
 
             const filtered = submissions.filter(item => {
@@ -1285,7 +1329,9 @@
                     ? 'bg-sky-100 text-sky-800'
                     : item.category.includes('English')
                         ? 'bg-indigo-100 text-indigo-800'
-                        : 'bg-amber-100 text-amber-900';
+                        : item.category === 'Fashion Show'
+                            ? 'bg-pink-100 text-pink-800'
+                            : 'bg-amber-100 text-amber-900';
 
                 const statusBadge = item.status === 'Disahkan Siar Raya'
                     ? `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 inline-flex items-center gap-1"><i class="fas fa-check-circle"></i> Disahkan</span>`
@@ -1303,7 +1349,7 @@
                         <td class="py-3.5 px-4 text-slate-700">${escapeHtml(item.teacherName)}</td>
                         <td class="py-3.5 px-4 text-xs text-slate-600">
                             <div class="font-semibold text-slate-800">${escapeHtml(item.mediaMode || 'MP4')}</div>
-                            <div class="text-slate-400">Nisbah: ${escapeHtml(item.requiredRatio || '16:9')}</div>
+                            <div class="text-slate-400">Aspek Ratio: ${escapeHtml(item.requiredRatio || '16:9')}</div>
                         </td>
                         <td class="py-3.5 px-4 text-xs text-slate-500">${escapeHtml(item.submittedAt || '-')}</td>
                         <td class="py-3.5 px-4 text-center">${statusBadge}</td>
