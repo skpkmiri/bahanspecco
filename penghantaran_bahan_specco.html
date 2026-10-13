@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PENGHANTARAN BAHAN SPECCO - AJK Siar Raya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        specco: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass-header {
+            background: linear-gradient(135deg, #082f49 0%, #0369a1 50%, #0284c7 100%);
+        }
+        .tab-active {
+            border-bottom: 3px solid #0284c7;
+            color: #0284c7;
+            font-weight: 700;
+            background-color: #f0f7ff;
+        }
+        .subtab-active {
+            background-color: #0284c7;
+            color: white;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+        .upload-zone {
+            border: 2px dashed #94a3b8;
+            transition: all 0.2s ease;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #0284c7;
+            background-color: #f0f7ff;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800">
+
+    <!-- Top Announcement Banner -->
+    <div id="announcement-bar" class="bg-amber-500 text-slate-950 px-4 py-2.5 text-sm font-medium shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+                <span class="bg-slate-900 text-amber-400 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider flex items-center gap-1 shrink-0">
+                    <i class="fas fa-bullhorn"></i> Makluman
+                </span>
+                <p id="announcement-text" class="truncate sm:whitespace-normal">
+                    Selamat datang ke Sistem Penghantaran Bahan Audio & Video SPECCO. Sila pastikan nisbah saiz video mengikut ketetapan pertandingan sebelum memuat naik!
+                </p>
+            </div>
+            <span id="cloud-status" class="text-xs px-2 py-0.5 rounded-full bg-amber-600/20 text-slate-900 font-semibold shrink-0 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span> Sistem Aktif
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="glass-header text-white shadow-lg sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md p-1.5 border border-white/20 shadow-inner flex items-center justify-center shrink-0 overflow-hidden">
+                    <img src="specco.png" alt="Logo SPECCO" class="w-full h-full object-contain"
+                         onerror="this.onerror=null; this.src='https://placehold.co/120x120/0284c7/ffffff?text=SPECCO';">
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-sky-400/20 text-sky-200 border border-sky-300/30">
+                            AJK Siar Raya • Karnival Pendidikan Khas
+                        </span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-0.5">
+                        PENGHANTARAN BAHAN SPECCO
+                    </h1>
+                    <p class="text-xs text-sky-100/80">Portal Rasmi Muat Naik Audio & Video Latar Belakang Persembahan</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2.5 self-end sm:self-center">
+                <a href="https://wa.me/60162864598?text=Salam%20sejahtera%2C%20Cikgu%20Rafeeq.%20Saya%20ada%20pertanyaan%20tentang%20penghantaran%20bahan%20untuk%20SPECCO."
+                   target="_blank" rel="noopener noreferrer"
+                   class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Hubungi Cikgu Rafeeq</span>
+                </a>
+                <button onclick="switchMainView('admin')" id="nav-admin-btn"
+                        class="bg-white/15 hover:bg-white/25 text-white border border-white/25 text-xs sm:text-sm font-semibold px-3.5 py-2.5 rounded-xl transition flex items-center gap-2">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Admin</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="bg-white text-slate-700 border-b border-slate-200">
+            <div class="max-w-6xl mx-auto px-4 flex overflow-x-auto no-scrollbar" id="main-nav-tabs">
+                <button onclick="switchMainView('submit')" id="tab-btn-submit"
+                        class="tab-active px-5 py-3.5 text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Borang Penghantaran Bahan</span>
+                </button>
+                <button onclick="switchMainView('list')" id="tab-btn-list"
+                        class="px-5 py-3.5 text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-specco-600 transition">
+                    <i class="fas fa-check-double"></i>
+                    <span>Senarai Sekolah Menghantar</span>
+                    <span id="submission-count-badge" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-specco-100 text-specco-700 font-bold">0</span>
+                </button>
+                <button onclick="switchMainView('contact')" id="tab-btn-contact"
+                        class="px-5 py-3.5 text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-specco-600 transition">
+                    <i class="fas fa-headset"></i>
+                    <span>Bantuan & Pertanyaan</span>
+                </button>
+                <!-- Dynamic Custom Menus added by Admin will appear here -->
+                <div id="custom-menu-nav" class="flex"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6 sm:py-8">
+
+        <!-- ==================== VIEW 1: BORANG PENGHANTARAN BAHAN ==================== -->
+        <section id="view-submit" class="space-y-6">
+            
+            <!-- Category Selector (2 Main Tabs + Anugerah Kumpulan Popular) -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200/80">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-layer-group text-specco-600"></i>
+                            Pilih Kategori Pertandingan
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                            Sila pilih tab pertandingan di bawah untuk memuat naik bahan audio atau video persembahan sekolah anda.
+                        </p>
+                    </div>
+                    <!-- 2 Main Tabs + Popular Award Selector -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 bg-slate-100 p-1.5 rounded-xl">
+                        <button type="button" onclick="selectCategory('semarak_seni')" id="cat-btn-semarak_seni"
+                                class="subtab-active px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2">
+                            <i class="fas fa-theater-masks"></i>
+                            <span>1. Semarak Seni</span>
+                        </button>
+                        <button type="button" onclick="selectCategory('english_carnival')" id="cat-btn-english_carnival"
+                                class="px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-microphone-alt"></i>
+                            <span>2. English Carnival</span>
+                        </button>
+                        <button type="button" onclick="selectCategory('kumpulan_popular')" id="cat-btn-kumpulan_popular"
+                                class="px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-star text-amber-500"></i>
+                            <span>3. Kumpulan Popular</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Category Alerts & Specifications -->
+                <div class="mt-5 grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    
+                    <!-- Left Column: Form -->
+                    <div class="lg:col-span-2">
+                        <form id="submission-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                            <input type="hidden" id="selected-category-input" value="semarak_seni">
+
+                            <!-- Category Header Badge -->
+                            <div id="form-category-header" class="p-4 rounded-xl bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-200 flex items-start justify-between gap-4">
+                                <div>
+                                    <span id="form-cat-badge" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded bg-sky-600 text-white">
+                                        TAB 1 : SEMARAK SENI
+                                    </span>
+                                    <h3 id="form-cat-title" class="text-base sm:text-lg font-bold text-slate-900 mt-1.5">
+                                        Borang Penghantaran Bahan Semarak Seni 6
+                                    </h3>
+                                    <p id="form-cat-subtitle" class="text-xs text-slate-600 mt-0.5">
+                                        Lengkapkan maklumat sekolah, guru pengiring dan muat naik fail persembahan.
+                                    </p>
+                                </div>
+                                <div id="aspect-ratio-pill" class="shrink-0 bg-rose-600 text-white px-3 py-2 rounded-xl text-center shadow-sm">
+                                    <div class="text-[10px] font-bold uppercase tracking-wider opacity-90">Saiz Video</div>
+                                    <div id="aspect-ratio-text" class="text-lg font-black leading-none mt-0.5">16 : 9</div>
+                                </div>
+                            </div>
+
+                            <!-- Nama Sekolah -->
+                            <div>
+                                <label for="school-name" class="block text-sm font-bold text-slate-700 mb-1.5">
+                                    Nama Sekolah <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <i class="fas fa-school absolute left-3.5 top-3.5 text-slate-400"></i>
+                                    <input type="text" id="school-name" required
+                                           placeholder="Contoh: SMK Pendidikan Khas Miri / SK Contoh"
+                                           class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-specco-500 focus:ring-2 focus:ring-specco-200 outline-none text-sm transition">
+                                </div>
+                            </div>
+
+                            <!-- Nama Guru & No Telefon Guru -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="teacher-name" class="block text-sm font-bold text-slate-700 mb-1.5">
+                                        Nama Guru Pengiring / PIC <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i class="fas fa-chalkboard-teacher absolute left-3.5 top-3.5 text-slate-400"></i>
+                                        <input type="text" id="teacher-name" required
+                                               placeholder="Contoh: Cikgu Ahmad bin Ali"
+                                               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-specco-500 focus:ring-2 focus:ring-specco-200 outline-none text-sm transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="teacher-phone" class="block text-sm font-bold text-slate-700 mb-1.5">
+                                        No. Telefon Guru (WhatsApp) <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <i class="fas fa-phone-alt absolute left-3.5 top-3.5 text-slate-400"></i>
+                                        <input type="tel" id="teacher-phone" required
+                                               placeholder="Contoh: 012-3456789"
+                                               class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-specco-500 focus:ring-2 focus:ring-specco-200 outline-none text-sm transition">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Jenis Bahan Pilihan -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1.5">
+                                    Jenis Bahan Yang Dihantar <span class="text-rose-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="media-type-selector">
+                                    <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-specco-600 has-[:checked]:bg-specco-50/60">
+                                        <input type="radio" name="media_mode" value="Video MP4 (Audio + Video Latar Belakang)" checked onchange="updateMediaModeUI()" class="mt-1 text-specco-600 focus:ring-specco-500">
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-800">Audio + Video Latar Belakang (MP4)</div>
+                                            <div class="text-xs text-slate-500 mt-0.5">Video penuh beserta audio dalam satu fail MP4</div>
+                                        </div>
+                                    </label>
+                                    <label id="audio-only-option" class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition has-[:checked]:border-specco-600 has-[:checked]:bg-specco-50/60">
+                                        <input type="radio" name="media_mode" value="Audio Sahaja (Latar Belakang Auto Banner Utama)" onchange="updateMediaModeUI()" class="mt-1 text-specco-600 focus:ring-specco-500">
+                                        <div>
+                                            <div class="text-sm font-bold text-slate-800">Audio Sahaja (MP3 / WAV / M4A)</div>
+                                            <div class="text-xs text-slate-500 mt-0.5">Paparan skrin automatik guna Banner Utama</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- File Upload Box (Direct Upload in Form) -->
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1.5">
+                                    Muat Naik Fail Bahan (<span id="upload-format-label">Video MP4 / Audio</span>) <span class="text-rose-500">*</span>
+                                </label>
+                                <div id="drop-zone" class="upload-zone rounded-2xl p-6 text-center cursor-pointer relative"
+                                     onclick="document.getElementById('media-file-input').click()"
+                                     ondragover="handleDragOver(event)"
+                                     ondragleave="handleDragLeave(event)"
+                                     ondrop="handleDrop(event)">
+                                    <input type="file" id="media-file-input" accept="video/mp4,video/*,audio/*" class="hidden" onchange="handleFileSelect(event)">
+                                    
+                                    <div id="upload-empty-state" class="space-y-2">
+                                        <div class="w-14 h-14 rounded-full bg-specco-100 text-specco-600 mx-auto flex items-center justify-center text-2xl">
+                                            <i class="fas fa-file-video"></i>
+                                        </div>
+                                        <div class="text-sm font-bold text-slate-700">
+                                            Klik untuk pilih fail atau seret fail ke sini
+                                        </div>
+                                        <p class="text-xs text-slate-500" id="upload-helper-text">
+                                            Menyokong fail MP4 (Saiz Video 16:9) atau fail Audio MP3/WAV
+                                        </p>
+                                    </div>
+
+                                    <!-- Selected File Preview -->
+                                    <div id="upload-selected-state" class="hidden space-y-3">
+                                        <div class="flex items-center justify-between bg-white p-3.5 rounded-xl border border-slate-200 text-left shadow-sm">
+                                            <div class="flex items-center gap-3 overflow-hidden">
+                                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 text-lg">
+                                                    <i class="fas fa-check-circle"></i>
+                                                </div>
+                                                <div class="overflow-hidden">
+                                                    <p id="selected-file-name" class="text-sm font-bold text-slate-800 truncate">nama_fail.mp4</p>
+                                                    <p id="selected-file-meta" class="text-xs text-slate-500">Saiz: 0 MB</p>
+                                                </div>
+                                            </div>
+                                            <button type="button" onclick="clearSelectedFile(event)" class="text-xs text-rose-600 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg font-semibold">
+                                                Tukar Fail
+                                            </button>
+                                        </div>
+                                        <!-- Automatic Video Aspect Ratio Checker -->
+                                        <div id="video-dimension-feedback" class="hidden text-xs px-3 py-2 rounded-lg font-medium text-left"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Catatan Tambahan Kepada AJK Siar Raya -->
+                            <div>
+                                <label for="submission-notes" class="block text-sm font-bold text-slate-700 mb-1.5">
+                                    Catatan kepada AJK Siar Raya (Pilihan)
+                                </label>
+                                <textarea id="submission-notes" rows="2"
+                                          placeholder="Contoh: Mainkan muzik apabila peserta sudah berada di tengah pentas..."
+                                          class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:border-specco-500 focus:ring-2 focus:ring-specco-200 outline-none text-sm transition"></textarea>
+                            </div>
+
+                            <!-- Upload Progress Bar -->
+                            <div id="upload-progress-container" class="hidden bg-slate-900 text-white p-4 rounded-xl space-y-2">
+                                <div class="flex items-center justify-between text-xs font-semibold">
+                                    <span id="upload-progress-status" class="flex items-center gap-2">
+                                        <i class="fas fa-spinner fa-spin text-sky-400"></i> Memuat naik bahan ke pelayan SPECCO...
+                                    </span>
+                                    <span id="upload-progress-percent">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div id="upload-progress-bar" class="h-full bg-gradient-to-r from-sky-400 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="submit-btn"
+                                    class="w-full bg-specco-600 hover:bg-specco-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Hantar Bahan Persembahan Sekarang</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Important Notes & Aspect Ratio Reminder -->
+                    <div class="space-y-4">
+                        <!-- Important Banner Auto Note -->
+                        <div id="auto-banner-card" class="bg-amber-50 border border-amber-200 rounded-2xl p-5 shadow-sm">
+                            <div class="flex items-center gap-2.5 text-amber-800 font-bold text-sm mb-2">
+                                <i class="fas fa-info-circle text-lg text-amber-600"></i>
+                                <span>NOTA PENTING SIAR RAYA</span>
+                            </div>
+                            <p id="auto-banner-note" class="text-xs sm:text-sm text-amber-900 leading-relaxed font-medium">
+                                Sekiranya menghantar <strong>audio sahaja</strong>, maka background persembahan secara automatik akan menggunakan <strong>Banner Utama Semarak Seni 6</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Aspect Ratio Visual Guide -->
+                        <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-sm space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
+                                    <i class="fas fa-exclamation-triangle"></i> Peringatan Saiz Video
+                                </span>
+                                <span id="guide-ratio-badge" class="text-xs font-extrabold px-2.5 py-0.5 rounded bg-rose-600 text-white">
+                                    WAJIB 16:9
+                                </span>
+                            </div>
+
+                            <!-- Visual Ratio Diagram -->
+                            <div class="flex items-center justify-center py-3">
+                                <div id="ratio-visual-box" class="w-48 h-28 border-2 border-dashed border-sky-400 bg-sky-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300">
+                                    <i id="ratio-visual-icon" class="fas fa-tv text-2xl text-sky-400 mb-1"></i>
+                                    <span id="ratio-visual-title" class="text-sm font-black text-white">LANDSKAP 16:9</span>
+                                    <span id="ratio-visual-res" class="text-[11px] text-sky-300">1920 x 1080 px (HD)</span>
+                                </div>
+                            </div>
+
+                            <div class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">1. Semarak Seni:</span>
+                                    <span class="font-bold text-sky-300">Saiz Video 16:9 (Melintang)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">2. English Carnival (Jazz Chant):</span>
+                                    <span class="font-bold text-sky-300">Saiz Video 16:9 (Melintang)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">3. Anugerah Kumpulan Popular:</span>
+                                    <span class="font-bold text-amber-300">Saiz Video 9:16 (Menegak)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick WhatsApp Help Card -->
+                        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center justify-between gap-3">
+                            <div>
+                                <div class="text-xs font-bold text-emerald-800 uppercase">Masalah Muat Naik?</div>
+                                <div class="text-sm font-bold text-slate-900">Hubungi Cikgu Mohd Rafeeq</div>
+                                <div class="text-xs text-slate-600">AJK Siar Raya SPECCO</div>
+                            </div>
+                            <a href="https://wa.me/60162864598?text=Salam%20sejahtera%2C%20Cikgu%20Rafeeq.%20Saya%20ada%20pertanyaan%20tentang%20penghantaran%20bahan%20untuk%20SPECCO."
+                               target="_blank" rel="noopener noreferrer"
+                               class="bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-xl shadow transition shrink-0">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 2: SENARAI SEKOLAH YANG TELAH MENGHANTAR ==================== -->
+        <section id="view-list" class="hidden space-y-6">
+            <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-clipboard-check text-emerald-600"></i>
+                            Senarai Nama Sekolah Yang Telah Menghantar Bahan
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">
+                            Semakan status penghantaran bahan audio & video mengikut kategori pertandingan.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="relative">
+                            <i class="fas fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                            <input type="text" id="public-search-input" oninput="renderPublicSchoolList()"
+                                   placeholder="Cari nama sekolah..."
+                                   class="pl-8 pr-3 py-1.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:border-specco-500 outline-none">
+                        </div>
+                        <select id="public-filter-category" onchange="renderPublicSchoolList()"
+                                class="text-xs sm:text-sm py-1.5 px-3 rounded-xl border border-slate-300 bg-white font-medium text-slate-700 outline-none">
+                            <option value="ALL">Semua Kategori</option>
+                            <option value="Semarak Seni">Semarak Seni</option>
+                            <option value="English Carnival - Jazz Chant">English Carnival - Jazz Chant</option>
+                            <option value="Anugerah Kumpulan Popular">Anugerah Kumpulan Popular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Summary Stats Pills -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <div class="text-xs text-slate-500 font-medium">Jumlah Penghantaran</div>
+                        <div id="stat-total" class="text-2xl font-black text-slate-900 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200">
+                        <div class="text-xs text-sky-700 font-medium">Semarak Seni</div>
+                        <div id="stat-semarak" class="text-2xl font-black text-sky-900 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-indigo-50 border border-indigo-200">
+                        <div class="text-xs text-indigo-700 font-medium">English Carnival</div>
+                        <div id="stat-english" class="text-2xl font-black text-indigo-900 mt-0.5">0</div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
+                        <div class="text-xs text-amber-800 font-medium">Kumpulan Popular</div>
+                        <div id="stat-popular" class="text-2xl font-black text-amber-900 mt-0.5">0</div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 text-xs uppercase font-bold">
+                                <th class="py-3 px-4 w-12">Bil</th>
+                                <th class="py-3 px-4">Nama Sekolah</th>
+                                <th class="py-3 px-4">Kategori Pertandingan</th>
+                                <th class="py-3 px-4">Guru Pengiring</th>
+                                <th class="py-3 px-4">Jenis Bahan</th>
+                                <th class="py-3 px-4">Masa Hantar</th>
+                                <th class="py-3 px-4 text-center">Status Siar Raya</th>
+                            </tr>
+                        </thead>
+                        <tbody id="public-submissions-tbody" class="divide-y divide-slate-200 text-sm">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 3: HUBUNGI CIKGU MOHD RAFEEQ ==================== -->
+        <section id="view-contact" class="hidden">
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="glass-header p-6 text-white text-center">
+                    <div class="w-20 h-20 rounded-full bg-white/15 border-2 border-white/40 flex items-center justify-center mx-auto text-3xl mb-3 shadow-md">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest bg-sky-400/20 px-3 py-1 rounded-full font-bold">
+                        Pegawai Meja AJK Siar Raya SPECCO
+                    </span>
+                    <h2 class="text-2xl font-extrabold mt-2">CIKGU MOHD RAFEEQ</h2>
+                    <p class="text-sm text-sky-100 mt-1">Penyelaras Teknikal Audio & Video Karnival Pendidikan Khas</p>
+                </div>
+                <div class="p-6 space-y-5">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-slate-500 font-medium">No. Telefon / WhatsApp:</span>
+                            <span class="font-bold text-slate-900">+60 16-286 4598</span>
+                        </div>
+                        <div class="flex items-start justify-between gap-4 pt-2 border-t border-slate-200/70">
+                            <span class="text-slate-500 font-medium shrink-0">Mesej Permulaan:</span>
+                            <span class="text-xs italic text-slate-700 bg-white px-3 py-2 rounded-lg border border-slate-200">
+                                "Salam sejahtera, Cikgu Rafeeq. Saya ada pertanyaan tentang penghantaran bahan untuk SPECCO."
+                            </span>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/60162864598?text=Salam%20sejahtera%2C%20Cikgu%20Rafeeq.%20Saya%20ada%20pertanyaan%20tentang%20penghantaran%20bahan%20untuk%20SPECCO."
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-3 text-base">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span>Buka WhatsApp Cikgu Mohd Rafeeq Sekarang</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 4: DYNAMIC CUSTOM MENU CONTENT ==================== -->
+        <section id="view-custom" class="hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                <h2 id="custom-view-title" class="text-xl font-bold text-slate-900"></h2>
+                <div id="custom-view-body" class="prose max-w-none text-sm text-slate-700 whitespace-pre-line leading-relaxed"></div>
+            </div>
+        </section>
+
+        <!-- ==================== VIEW 5: ADMIN PANEL (PASSWORD: specco) ==================== -->
+        <section id="view-admin" class="hidden space-y-6">
+            
+            <!-- Admin Login Gate -->
+            <div id="admin-login-card" class="max-w-md mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200 text-center space-y-5 my-6">
+                <div class="w-16 h-16 rounded-2xl bg-specco-100 text-specco-700 flex items-center justify-center mx-auto text-2xl shadow-inner">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-900">Akses Admin AJK Siar Raya</h2>
+                    <p class="text-xs text-slate-500 mt-1">Masukkan kata laluan rasmi untuk mengurus senarai sekolah, muat turun bahan & pautan Google Drive.</p>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Kata Laluan Admin</label>
+                        <input type="password" id="admin-password-input" required placeholder="Masukkan kata laluan..."
+                               class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-specco-600 outline-none text-sm">
+                        <p id="admin-login-error" class="hidden text-xs text-rose-600 font-semibold mt-1.5">
+                            <i class="fas fa-times-circle"></i> Kata laluan tidak sah! Sila cuba lagi.
+                        </p>
+                    </div>
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-sm">
+                        Log Masuk Panel Admin
+                    </button>
+                </form>
+            </div>
+
+            <!-- Admin Dashboard Content (Visible ONLY after password `specco`) -->
+            <div id="admin-dashboard" class="hidden space-y-6">
+                
+                <!-- Top Admin Bar -->
+                <div class="bg-slate-900 text-white p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/20 border border-sky-400/30 flex items-center justify-center text-sky-400 text-xl">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-emerald-400">Mod Pentadbir Aktif</span>
+                            <h2 class="text-lg sm:text-xl font-extrabold">Panel Kawalan AJK Siar Raya SPECCO</h2>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="openGDriveGuideModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-2">
+                            <i class="fas fa-cogs"></i>
+                            <span>Panduan Setting Google Drive</span>
+                        </button>
+                        <button onclick="logoutAdmin()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl transition flex items-center gap-1.5">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Log Keluar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADMIN EXCLUSIVE: GOOGLE DRIVE MASTER FOLDER LINK -->
+                <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 text-white p-5 sm:p-6 rounded-2xl shadow-md border border-emerald-500/30">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div class="space-y-1.5">
+                            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30">
+                                <i class="fab fa-google-drive"></i> Pautan Rahsia Admin Sahaja (Tidak Dilihat Peserta)
+                            </div>
+                            <h3 class="text-lg font-extrabold">Folder Utama Google Drive Bahan SPECCO</h3>
+                            <p class="text-xs text-emerald-100/80 break-all font-mono bg-black/30 px-3 py-1.5 rounded-lg">
+                                https://drive.google.com/drive/folders/1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac?usp=sharing
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                            <a href="https://drive.google.com/drive/folders/1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac?usp=sharing"
+                               target="_blank" rel="noopener noreferrer"
+                               class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs sm:text-sm px-4 py-3 rounded-xl shadow transition flex items-center gap-2">
+                                <i class="fab fa-google-drive text-base"></i>
+                                <span>Buka Folder Google Drive</span>
+                            </a>
+                            <button onclick="copyDriveLink()" class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3.5 py-3 rounded-xl border border-white/20 transition flex items-center gap-1.5">
+                                <i class="fas fa-copy"></i>
+                                <span>Salin Link</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Apps Script Bridge URL Config for Auto-Sync to Google Drive -->
+                    <div class="mt-4 pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                        <div class="text-emerald-200">
+                            <i class="fas fa-plug mr-1"></i>
+                            <strong>Sambungan Google Apps Script Web App (Auto-Upload ke Folder Drive):</strong>
+                            <span id="gas-status-badge" class="ml-1 px-2 py-0.5 rounded bg-emerald-500/30 text-white font-semibold">Sedia</span>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <input type="url" id="gas-webhook-input" placeholder="Tampal URL Web App Google Script (Pilihan)..."
+                                   class="w-full sm:w-72 px-3 py-1.5 rounded-lg bg-black/40 border border-white/20 text-white placeholder-slate-400 outline-none">
+                            <button onclick="saveGasWebhookUrl()" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg shrink-0">
+                                Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADMIN TOOLS GRID: Announcement, Add School Manually, Add Custom Menu -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    
+                    <!-- Tool 1: Kemaskini Pengumuman -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-bullhorn text-amber-500"></i>
+                            Pengumuman Dalam Aplikasi
+                        </h3>
+                        <textarea id="admin-announcement-input" rows="3"
+                                  placeholder="Tulis pengumuman terkini untuk peserta..."
+                                  class="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm outline-none focus:border-specco-600"></textarea>
+                        <button onclick="updateAnnouncement()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs sm:text-sm transition">
+                            Kemaskini Pengumuman
+                        </button>
+                    </div>
+
+                    <!-- Tool 2: Kemaskini / Tambah Sekolah Secara Manual -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-plus-circle text-specco-600"></i>
+                            Tambah / Kemaskini Rekod Sekolah
+                        </h3>
+                        <input type="text" id="admin-add-school" placeholder="Nama Sekolah" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        <div class="grid grid-cols-2 gap-2">
+                            <input type="text" id="admin-add-teacher" placeholder="Nama Guru" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            <input type="text" id="admin-add-phone" placeholder="No. Telefon" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        </div>
+                        <select id="admin-add-category" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white">
+                            <option value="Semarak Seni">Semarak Seni (16:9)</option>
+                            <option value="English Carnival - Jazz Chant">English Carnival - Jazz Chant (16:9)</option>
+                            <option value="Anugerah Kumpulan Popular">Anugerah Kumpulan Popular (9:16)</option>
+                        </select>
+                        <button onclick="adminManualAddSchool()" class="w-full bg-specco-600 hover:bg-specco-700 text-white font-bold py-2.5 rounded-xl text-xs sm:text-sm transition">
+                            Tambah Ke Senarai Sekolah
+                        </button>
+                    </div>
+
+                    <!-- Tool 3: Tambah Menu Baru Dalam Aplikasi -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                            <i class="fas fa-folder-plus text-indigo-600"></i>
+                            Tambah Menu Baru Dalam Aplikasi
+                        </h3>
+                        <input type="text" id="admin-menu-title" placeholder="Nama Menu (Cth: Jadual Giliran / Syarat)"
+                               class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        <textarea id="admin-menu-content" rows="2" placeholder="Kandungan maklumat atau pautan untuk dipaparkan..."
+                                  class="w-full p-3 rounded-xl border border-slate-300 text-xs"></textarea>
+                        <button onclick="adminAddCustomMenu()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs sm:text-sm transition">
+                            Tambah Menu Navigasi
+                        </button>
+                        <div id="admin-custom-menu-list" class="space-y-1 pt-1"></div>
+                    </div>
+                </div>
+
+                <!-- ADMIN SUBMISSIONS TABLE & DOWNLOAD MANAGER -->
+                <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                                <i class="fas fa-download text-specco-600"></i>
+                                Pengurusan Bahan & Muat Turun (AJK Siar Raya)
+                            </h3>
+                            <p class="text-xs text-slate-500">
+                                Muat turun fail audio/video peserta, semak status pengesahan, atau eksport senarai CSV.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="exportSubmissionsCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+                                <i class="fas fa-file-csv"></i>
+                                <span>Eksport CSV</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-xs uppercase font-bold">
+                                    <th class="py-3 px-3">Bil</th>
+                                    <th class="py-3 px-3">Sekolah & Guru</th>
+                                    <th class="py-3 px-3">Kategori</th>
+                                    <th class="py-3 px-3">Maklumat Fail & Nota</th>
+                                    <th class="py-3 px-3">Status</th>
+                                    <th class="py-3 px-3 text-right">Tindakan / Muat Turun</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-submissions-tbody" class="divide-y divide-slate-200 text-xs sm:text-sm">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL: PANDUAN TETAPAN FOLDER GOOGLE DRIVE -->
+    <div id="gdrive-guide-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white max-w-3xl w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fab fa-google-drive text-emerald-400 text-xl"></i>
+                    <h3 class="font-extrabold text-base sm:text-lg">Tetapan (Setting) Folder Google Drive SPECCO</h3>
+                </div>
+                <button onclick="closeGDriveGuideModal()" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <div class="p-4 rounded-xl bg-sky-50 border border-sky-200 text-sky-950">
+                    <strong>Folder Sasaran Anda:</strong><br>
+                    <code class="text-xs break-all font-mono">https://drive.google.com/drive/folders/1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac</code><br>
+                    <strong>Folder ID:</strong> <code class="bg-white px-2 py-0.5 rounded border font-mono">1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac</code>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-specco-600 text-white inline-flex items-center justify-center text-xs">1</span>
+                        Tetapan Kebenaran Folder (Sharing Permission)
+                    </h4>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Buka folder Google Drive di atas menggunakan akaun pemilik (AJK Siar Raya).</li>
+                        <li>Klik kanan pada nama folder <strong>SPECCO</strong> &rarr; Pilih <strong>Share (Kongsi)</strong>.</li>
+                        <li>Di bahagian <strong>General Access (Akses Umum)</strong>, tukar daripada <em>Restricted</em> kepada <strong>"Anyone with the link" (Sesiapa sahaja yang mempunyai pautan)</strong>.</li>
+                        <li>Jika menggunakan <strong>Google Apps Script Web App</strong> (di bawah) supaya peserta muat naik terus melalui borang tanpa membuka Drive: kekalkan <strong>Viewer</strong> atau <strong>Editor</strong> pada akaun anda kerana skrip akan berjalan atas kuasa akaun pemilik (<em>Execute as: Me</em>).</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-specco-600 text-white inline-flex items-center justify-center text-xs">2</span>
+                        Integrasi Borang Terus Ke Folder Google Drive (Google Apps Script)
+                    </h4>
+                    <p>Untuk membolehkan fail yang dimuat naik dalam borang ini terus masuk ke dalam folder Google Drive <code>1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac</code> secara automatik:</p>
+                    <ol class="list-decimal pl-6 space-y-1">
+                        <li>Pergi ke <a href="https://script.google.com" target="_blank" class="text-specco-600 underline font-semibold">script.google.com</a> dan klik <strong>New Project</strong>.</li>
+                        <li>Salin kod di bawah dan tampal ke dalam fail <code>Code.gs</code>:</li>
+                    </ol>
+                    <div class="relative">
+                        <pre id="gas-code-block" class="bg-slate-900 text-emerald-300 p-4 rounded-xl text-xs overflow-x-auto font-mono leading-normal">function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    var folderId = "1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac";
+    var folder = DriveApp.getFolderById(folderId);
+    
+    var decoded = Utilities.base64Decode(data.fileBase64);
+    var blob = Utilities.newBlob(decoded, data.mimeType, data.fileName);
+    var file = folder.createFile(blob);
+    file.setDescription("Sekolah: " + data.schoolName + " | Kategori: " + data.category + " | Guru: " + data.teacherName + " (" + data.teacherPhone + ")");
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      fileUrl: file.getUrl(),
+      fileId: file.getId()
+    })).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      message: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}</pre>
+                        <button onclick="copyGasCode()" class="absolute top-2.5 right-2.5 bg-white/15 hover:bg-white/25 text-white text-xs px-2.5 py-1 rounded-lg">
+                            Salin Kod
+                        </button>
+                    </div>
+                    <ol start="3" class="list-decimal pl-6 space-y-1 pt-1">
+                        <li>Klik <strong>Deploy &rarr; New deployment</strong>.</li>
+                        <li>Pilih jenis <strong>Web app</strong>.</li>
+                        <li>Tetapkan <strong>Execute as: Me</strong> (Akaun Google Cikgu) dan <strong>Who has access: Anyone</strong>.</li>
+                        <li>Salin <strong>Web App URL</strong> yang diberikan dan tampalkan ke ruangan <em>Sambungan Google Apps Script Web App</em> di Panel Admin aplikasi ini.</li>
+                        <li>Selain itu, aplikasi ini juga telah disambungkan terus ke pangkalan data <strong>Firebase (`bahanspecco`)</strong> anda supaya semua penghantaran dan fail tersimpan dengan selamat dan boleh dimuat turun oleh Admin bila-bila masa.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="bg-slate-100 px-6 py-3.5 flex justify-end">
+                <button onclick="closeGDriveGuideModal()" class="bg-slate-900 text-white text-xs sm:text-sm font-bold px-5 py-2 rounded-xl">
+                    Faham & Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast / Message Modal (No alert() used) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-5 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="font-semibold text-slate-700">
+                PENGHANTARAN BAHAN SPECCO • Unit Siar Raya Karnival Pendidikan Khas
+            </div>
+            <div>
+                Penyelaras: Cikgu Mohd Rafeeq (<a href="https://wa.me/60162864598?text=Salam%20sejahtera%2C%20Cikgu%20Rafeeq.%20Saya%20ada%20pertanyaan%20tentang%20penghantaran%20bahan%20untuk%20SPECCO." target="_blank" class="text-emerald-600 font-semibold hover:underline">016-2864598</a>)
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+
+        // User's Provided Firebase Configuration for `bahanspecco`
+        const userProvidedFirebaseConfig = {
+            apiKey: "AIzaSyAUoT2Ay6FwPoZTtNCYfLjzWSqnv7wfAm0",
+            authDomain: "bahanspecco.firebaseapp.com",
+            projectId: "bahanspecco",
+            storageBucket: "bahanspecco.firebasestorage.app",
+            messagingSenderId: "758467494226",
+            appId: "1:758467494226:web:adba2b28c05fe95a7a7a8b",
+            measurementId: "G-Q1HX43MKKX"
+        };
+
+        // Sentiasa utamakan projek Firebase `bahanspecco` supaya semua peranti berkongsi data yang sama tanpa luput
+        const activeConfig = userProvidedFirebaseConfig;
+        const appId = 'bahanspecco-app';
+
+        let app, auth, db, storage;
+        let currentUser = null;
+        let isAdminLoggedIn = false;
+        let selectedFile = null;
+        let detectedAspectRatio = null;
+        let gasWebhookUrl = "";
+
+        // Category Definitions
+        const CATEGORIES = {
+            semarak_seni: {
+                id: 'semarak_seni',
+                name: 'Semarak Seni',
+                badge: 'TAB 1 : SEMARAK SENI',
+                title: 'Borang Penghantaran Bahan Semarak Seni 6',
+                ratio: '16:9',
+                orientation: 'LANDSKAP 16:9',
+                resolution: '1920 x 1080 px (Melintang)',
+                allowAudioOnly: true,
+                note: 'Nota : Sekiranya audio sahaja, maka background persembahan secara automatik menggunakan <strong>Banner Utama Semarak Seni 6</strong>.'
+            },
+            english_carnival: {
+                id: 'english_carnival',
+                name: 'English Carnival - Jazz Chant',
+                badge: 'TAB 2 : ENGLISH CARNIVAL - JAZZ CHANT',
+                title: 'Borang Penghantaran Bahan English Carnival (Jazz Chant)',
+                ratio: '16:9',
+                orientation: 'LANDSKAP 16:9',
+                resolution: '1920 x 1080 px (Melintang)',
+                allowAudioOnly: true,
+                note: 'Nota : Sekiranya audio sahaja, maka background persembahan secara automatik menggunakan <strong>Banner Utama English Carnival</strong>.'
+            },
+            kumpulan_popular: {
+                id: 'kumpulan_popular',
+                name: 'Anugerah Kumpulan Popular',
+                badge: 'KATEGORI 3 : ANUGERAH KUMPULAN POPULAR',
+                title: 'Borang Penghantaran Video Anugerah Kumpulan Popular',
+                ratio: '9:16',
+                orientation: 'POTRET / MENEGAK 9:16',
+                resolution: '1080 x 1920 px (Menegak / Reels / TikTok)',
+                allowAudioOnly: false,
+                note: 'PERINGATAN PENTING : Kategori Anugerah Kumpulan Popular memerlukan <strong>SAIZ VIDEO 9:16 (Menegak)</strong>.'
+            }
+        };
+
+        // Application State
+        let submissions = [];
+        let customMenus = [];
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-emerald-600 text-white border-emerald-500',
+                error: 'bg-rose-600 text-white border-rose-500',
+                info: 'bg-slate-900 text-white border-slate-700'
+            };
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                info: 'fa-info-circle'
+            };
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-xs sm:text-sm font-semibold transition-all duration-300 ${colors[type] || colors.info}`;
+            toast.innerHTML = `<i class="fas ${icons[type] || icons.info} text-base shrink-0"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        window.switchMainView = function(viewName) {
+            const views = ['submit', 'list', 'contact', 'custom', 'admin'];
+            views.forEach(v => {
+                const sec = document.getElementById(`view-${v}`);
+                if (sec) sec.classList.add('hidden');
+                const btn = document.getElementById(`tab-btn-${v}`);
+                if (btn) btn.classList.remove('tab-active');
+            });
+
+            // Deselect custom menu buttons
+            document.querySelectorAll('.custom-nav-btn').forEach(b => b.classList.remove('tab-active'));
+
+            const targetSection = document.getElementById(`view-${viewName}`);
+            if (targetSection) targetSection.classList.remove('hidden');
+
+            const targetBtn = document.getElementById(`tab-btn-${viewName}`);
+            if (targetBtn) targetBtn.classList.add('tab-active');
+
+            if (viewName === 'list') renderPublicSchoolList();
+            if (viewName === 'admin' && isAdminLoggedIn) renderAdminTable();
+        };
+
+        window.selectCategory = function(catKey) {
+            const config = CATEGORIES[catKey];
+            if (!config) return;
+
+            document.getElementById('selected-category-input').value = catKey;
+
+            // Update button active styles
+            ['semarak_seni', 'english_carnival', 'kumpulan_popular'].forEach(k => {
+                const btn = document.getElementById(`cat-btn-${k}`);
+                if (k === catKey) {
+                    btn.className = 'subtab-active px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center gap-2';
+                } else {
+                    btn.className = 'px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:bg-white/60 transition flex items-center justify-center gap-2';
+                }
+            });
+
+            // Update form headers & reminders
+            document.getElementById('form-cat-badge').textContent = config.badge;
+            document.getElementById('form-cat-title').textContent = config.title;
+            document.getElementById('aspect-ratio-text').textContent = config.ratio;
+            document.getElementById('guide-ratio-badge').textContent = `WAJIB ${config.ratio}`;
+            document.getElementById('auto-banner-note').innerHTML = config.note;
+            document.getElementById('ratio-visual-title').textContent = config.orientation;
+            document.getElementById('ratio-visual-res').textContent = config.resolution;
+
+            const visualBox = document.getElementById('ratio-visual-box');
+            const visualIcon = document.getElementById('ratio-visual-icon');
+            if (config.ratio === '9:16') {
+                visualBox.className = 'w-28 h-48 border-2 border-dashed border-amber-400 bg-amber-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300';
+                visualIcon.className = 'fas fa-mobile-alt text-2xl text-amber-400 mb-1';
+            } else {
+                visualBox.className = 'w-48 h-28 border-2 border-dashed border-sky-400 bg-sky-950/60 rounded-xl flex flex-col items-center justify-center p-2 transition-all duration-300';
+                visualIcon.className = 'fas fa-tv text-2xl text-sky-400 mb-1';
+            }
+
+            // Toggle Audio Only option
+            const audioOption = document.getElementById('audio-only-option');
+            const radioButtons = document.getElementsByName('media_mode');
+            if (!config.allowAudioOnly) {
+                audioOption.classList.add('opacity-50', 'pointer-events-none');
+                radioButtons[0].checked = true;
+            } else {
+                audioOption.classList.remove('opacity-50', 'pointer-events-none');
+            }
+
+            updateMediaModeUI();
+            if (selectedFile) validateVideoAspectRatio(selectedFile);
+        };
+
+        window.updateMediaModeUI = function() {
+            const catKey = document.getElementById('selected-category-input').value;
+            const config = CATEGORIES[catKey];
+            const mode = document.querySelector('input[name="media_mode"]:checked')?.value || '';
+            const helper = document.getElementById('upload-helper-text');
+            const formatLabel = document.getElementById('upload-format-label');
+
+            if (mode.includes('Audio Sahaja')) {
+                formatLabel.textContent = 'Fail Audio MP3 / WAV / M4A';
+                helper.textContent = `Menyokong fail Audio (MP3/WAV). Paparan latar belakang automatik menggunakan Banner Utama ${config.name}.`;
+            } else {
+                formatLabel.textContent = `Video MP4 (Saiz ${config.ratio})`;
+                helper.textContent = `Menyokong fail Video MP4 (PERINGATAN: Saiz Video mestilah ${config.ratio}).`;
+            }
+        };
+
+        window.handleDragOver = function(e) {
+            e.preventDefault();
+            document.getElementById('drop-zone').classList.add('dragover');
+        };
+
+        window.handleDragLeave = function(e) {
+            e.preventDefault();
+            document.getElementById('drop-zone').classList.remove('dragover');
+        };
+
+        window.handleDrop = function(e) {
+            e.preventDefault();
+            document.getElementById('drop-zone').classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                processSelectedFile(e.dataTransfer.files[0]);
+            }
+        };
+
+        window.handleFileSelect = function(e) {
+            if (e.target.files && e.target.files[0]) {
+                processSelectedFile(e.target.files[0]);
+            }
+        };
+
+        window.clearSelectedFile = function(e) {
+            if (e) e.stopPropagation();
+            selectedFile = null;
+            detectedAspectRatio = null;
+            document.getElementById('media-file-input').value = '';
+            document.getElementById('upload-empty-state').classList.remove('hidden');
+            document.getElementById('upload-selected-state').classList.add('hidden');
+            document.getElementById('video-dimension-feedback').classList.add('hidden');
+        };
+
+        function processSelectedFile(file) {
+            selectedFile = file;
+            const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+            document.getElementById('selected-file-name').textContent = file.name;
+            document.getElementById('selected-file-meta').textContent = `Saiz: ${sizeMB} MB • Jenis: ${file.type || 'Media'}`;
+            document.getElementById('upload-empty-state').classList.add('hidden');
+            document.getElementById('upload-selected-state').classList.remove('hidden');
+
+            if (file.type.startsWith('video/')) {
+                validateVideoAspectRatio(file);
+            } else {
+                const fb = document.getElementById('video-dimension-feedback');
+                fb.classList.remove('hidden');
+                fb.className = 'text-xs px-3 py-2 rounded-lg font-medium text-left bg-sky-50 text-sky-800 border border-sky-200';
+                fb.innerHTML = `<i class="fas fa-music mr-1"></i> Fail Audio dikesan. Latar belakang persembahan akan menggunakan <strong>Banner Utama</strong> secara automatik.`;
+                detectedAspectRatio = 'Audio Sahaja (Auto Banner)';
+            }
+        }
+
+        function validateVideoAspectRatio(file) {
+            const fb = document.getElementById('video-dimension-feedback');
+            const catKey = document.getElementById('selected-category-input').value;
+            const requiredRatio = CATEGORIES[catKey].ratio;
+
+            const video = document.createElement('video');
+            video.preload = 'metadata';
+            video.onloadedmetadata = function() {
+                window.URL.revokeObjectURL(video.src);
+                const w = video.videoWidth;
+                const h = video.videoHeight;
+                if (!w || !h) return;
+
+                const ratioNum = w / h;
+                const is16by9 = Math.abs(ratioNum - (16 / 9)) < 0.25 || ratioNum > 1.2;
+                const is9by16 = Math.abs(ratioNum - (9 / 16)) < 0.25 || ratioNum < 0.85;
+                detectedAspectRatio = `${w}x${h}px`;
+
+                fb.classList.remove('hidden');
+                if (requiredRatio === '16:9' && is16by9) {
+                    fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-emerald-50 text-emerald-800 border border-emerald-200';
+                    fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (16:9 Melintang)</strong> — Menepati spesifikasi pertandingan!`;
+                } else if (requiredRatio === '9:16' && is9by16) {
+                    fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-emerald-50 text-emerald-800 border border-emerald-200';
+                    fb.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Resolusi Video: <strong>${w}x${h} (9:16 Menegak)</strong> — Menepati spesifikasi Anugerah Kumpulan Popular!`;
+                } else {
+                    fb.className = 'text-xs px-3 py-2 rounded-lg font-semibold text-left bg-amber-50 text-amber-900 border border-amber-300';
+                    fb.innerHTML = `<i class="fas fa-exclamation-triangle mr-1"></i> Perhatian: Resolusi video anda ialah <strong>${w}x${h}</strong>. Kategori ini menetapkan saiz <strong>${requiredRatio}</strong>.`;
+                }
+            };
+            video.src = URL.createObjectURL(file);
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64String = reader.result.split(',')[1];
+                    resolve(base64String);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        window.handleFormSubmit = async function(e) {
+            e.preventDefault();
+            if (!selectedFile) {
+                showToast('Sila pilih fail audio atau video untuk dimuat naik terlebih dahulu!', 'error');
+                return;
+            }
+
+            const catKey = document.getElementById('selected-category-input').value;
+            const config = CATEGORIES[catKey];
+            const schoolName = document.getElementById('school-name').value.trim();
+            const teacherName = document.getElementById('teacher-name').value.trim();
+            const teacherPhone = document.getElementById('teacher-phone').value.trim();
+            const mediaMode = document.querySelector('input[name="media_mode"]:checked')?.value || 'Audio + Video MP4';
+            const notes = document.getElementById('submission-notes').value.trim();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const progressContainer = document.getElementById('upload-progress-container');
+            const progressBar = document.getElementById('upload-progress-bar');
+            const progressPercent = document.getElementById('upload-progress-percent');
+            const progressStatus = document.getElementById('upload-progress-status');
+
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+            progressContainer.classList.remove('hidden');
+            progressBar.style.width = '10%';
+            progressPercent.textContent = '10%';
+
+            let uploadedFileUrl = '';
+            let localBlobUrl = URL.createObjectURL(selectedFile);
+            const safeFileName = `${config.name.replace(/\s+/g, '_')}_${schoolName.replace(/\s+/g, '_')}_${Date.now()}_${selectedFile.name}`;
+
+            try {
+                // 1. Optional Google Apps Script Bridge (Direct to Google Drive Folder if configured)
+                if (gasWebhookUrl && selectedFile.size <= 35 * 1024 * 1024) {
+                    progressStatus.innerHTML = `<i class="fas fa-spinner fa-spin text-sky-400"></i> Menghantar salinan ke Folder Google Drive SPECCO...`;
+                    try {
+                        const base64Data = await fileToBase64(selectedFile);
+                        await fetch(gasWebhookUrl, {
+                            method: 'POST',
+                            mode: 'no-cors',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                fileName: safeFileName,
+                                mimeType: selectedFile.type || 'application/octet-stream',
+                                fileBase64: base64Data,
+                                schoolName,
+                                teacherName,
+                                teacherPhone,
+                                category: config.name
+                            })
+                        });
+                    } catch (gasErr) {
+                        console.warn('Google Drive webhook skip:', gasErr);
+                    }
+                }
+
+                // 2. Upload to Firebase Storage if available
+                if (storage) {
+                    try {
+                        progressStatus.innerHTML = `<i class="fas fa-spinner fa-spin text-sky-400"></i> Memuat naik fail ke storan awan SPECCO...`;
+                        const fileRef = storageRef(storage, `specco_submissions/${safeFileName}`);
+                        const uploadTask = uploadBytesResumable(fileRef, selectedFile);
+
+                        uploadedFileUrl = await new Promise((resolve, reject) => {
+                            const timeoutId = setTimeout(() => resolve(''), 12000);
+                            uploadTask.on('state_changed',
+                                (snapshot) => {
+                                    const pct = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 85) + 10;
+                                    progressBar.style.width = `${pct}%`;
+                                    progressPercent.textContent = `${pct}%`;
+                                },
+                                (err) => {
+                                    clearTimeout(timeoutId);
+                                    resolve('');
+                                },
+                                async () => {
+                                    clearTimeout(timeoutId);
+                                    const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+                                    resolve(downloadUrl);
+                                }
+                            );
+                        });
+                    } catch (storageErr) {
+                        console.warn('Storage fallback:', storageErr);
+                    }
+                }
+
+                // If file is small (<700KB) and storage URL wasn't returned, keep data URL so Admin can download directly across devices
+                let inlineDataUrl = '';
+                if (!uploadedFileUrl && selectedFile.size <= 700 * 1024) {
+                    const b64 = await fileToBase64(selectedFile);
+                    inlineDataUrl = `data:${selectedFile.type || 'application/octet-stream'};base64,${b64}`;
+                }
+
+                progressBar.style.width = '100%';
+                progressPercent.textContent = '100%';
+
+                const newRecord = {
+                    schoolName,
+                    teacherName,
+                    teacherPhone,
+                    category: config.name,
+                    requiredRatio: config.ratio,
+                    mediaMode,
+                    fileName: selectedFile.name,
+                    fileSizeMB: (selectedFile.size / (1024 * 1024)).toFixed(2),
+                    detectedRatio: detectedAspectRatio || config.ratio,
+                    notes: notes || (mediaMode.includes('Audio Sahaja') ? `Auto Banner Utama ${config.name}` : '-'),
+                    fileUrl: uploadedFileUrl || inlineDataUrl || localBlobUrl,
+                    status: 'Diterima',
+                    submittedAt: new Date().toLocaleString('ms-MY', { dateStyle: 'medium', timeStyle: 'short' }),
+                    timestamp: Date.now()
+                };
+
+                // Save record to Firestore
+                if (db && currentUser) {
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'specco_submissions');
+                    await addDoc(colRef, newRecord);
+                } else {
+                    newRecord.id = 'local_' + Date.now();
+                    submissions.unshift(newRecord);
+                    renderPublicSchoolList();
+                    renderAdminTable();
+                }
+
+                showToast(`Tahniah! Bahan daripada ${schoolName} (${config.name}) berjaya dihantar.`, 'success');
+                document.getElementById('submission-form').reset();
+                clearSelectedFile();
+                updateMediaModeUI();
+
+                setTimeout(() => {
+                    progressContainer.classList.add('hidden');
+                    switchMainView('list');
+                }, 900);
+
+            } catch (err) {
+                console.error(err);
+                showToast('Ralat semasa menghantar bahan. Sila cuba lagi.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        };
+
+        window.renderPublicSchoolList = function() {
+            const tbody = document.getElementById('public-submissions-tbody');
+            const searchVal = (document.getElementById('public-search-input')?.value || '').toLowerCase();
+            const catFilter = document.getElementById('public-filter-category')?.value || 'ALL';
+
+            // Update counters
+            document.getElementById('submission-count-badge').textContent = submissions.length;
+            document.getElementById('stat-total').textContent = submissions.length;
+            document.getElementById('stat-semarak').textContent = submissions.filter(s => s.category === 'Semarak Seni').length;
+            document.getElementById('stat-english').textContent = submissions.filter(s => s.category === 'English Carnival - Jazz Chant').length;
+            document.getElementById('stat-popular').textContent = submissions.filter(s => s.category === 'Anugerah Kumpulan Popular').length;
+
+            const filtered = submissions.filter(item => {
+                const matchSearch = (item.schoolName || '').toLowerCase().includes(searchVal) ||
+                                    (item.teacherName || '').toLowerCase().includes(searchVal);
+                const matchCat = catFilter === 'ALL' || item.category === catFilter;
+                return matchSearch && matchCat;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="py-10 text-center text-slate-400">
+                            <i class="fas fa-inbox text-3xl mb-2 block"></i>
+                            Belum ada sekolah yang menghantar bahan dalam kategori ini.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((item, idx) => {
+                const catBadgeColor = item.category === 'Semarak Seni'
+                    ? 'bg-sky-100 text-sky-800'
+                    : item.category.includes('English')
+                        ? 'bg-indigo-100 text-indigo-800'
+                        : 'bg-amber-100 text-amber-900';
+
+                const statusBadge = item.status === 'Disahkan Siar Raya'
+                    ? `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 inline-flex items-center gap-1"><i class="fas fa-check-circle"></i> Disahkan</span>`
+                    : `<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-800 inline-flex items-center gap-1"><i class="fas fa-clock"></i> ${item.status || 'Diterima'}</span>`;
+
+                return `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="py-3.5 px-4 font-bold text-slate-500">${idx + 1}</td>
+                        <td class="py-3.5 px-4 font-bold text-slate-900">${escapeHtml(item.schoolName)}</td>
+                        <td class="py-3.5 px-4">
+                            <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${catBadgeColor}">
+                                ${escapeHtml(item.category)}
+                            </span>
+                        </td>
+                        <td class="py-3.5 px-4 text-slate-700">${escapeHtml(item.teacherName)}</td>
+                        <td class="py-3.5 px-4 text-xs text-slate-600">
+                            <div class="font-semibold text-slate-800">${escapeHtml(item.mediaMode || 'MP4')}</div>
+                            <div class="text-slate-400">Nisbah: ${escapeHtml(item.requiredRatio || '16:9')}</div>
+                        </td>
+                        <td class="py-3.5 px-4 text-xs text-slate-500">${escapeHtml(item.submittedAt || '-')}</td>
+                        <td class="py-3.5 px-4 text-center">${statusBadge}</td>
+                    </tr>
+                `;
+            }).join('');
+        };
+
+        window.handleAdminLogin = function(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('admin-password-input').value.trim();
+            const errEl = document.getElementById('admin-login-error');
+
+            if (pwd === 'specco') {
+                isAdminLoggedIn = true;
+                errEl.classList.add('hidden');
+                document.getElementById('admin-login-card').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                document.getElementById('admin-password-input').value = '';
+                renderAdminTable();
+                showToast('Selamat datang ke Panel Admin AJK Siar Raya SPECCO!', 'success');
+            } else {
+                errEl.classList.remove('hidden');
+                showToast('Kata laluan salah!', 'error');
+            }
+        };
+
+        window.logoutAdmin = function() {
+            isAdminLoggedIn = false;
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-login-card').classList.remove('hidden');
+            showToast('Anda telah log keluar daripada mod Admin.', 'info');
+        };
+
+        window.renderAdminTable = function() {
+            if (!isAdminLoggedIn) return;
+            const tbody = document.getElementById('admin-submissions-tbody');
+
+            if (submissions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-8 text-center text-slate-400">
+                            Tiada rekod penghantaran buat masa ini.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = submissions.map((item, idx) => {
+                const isVerified = item.status === 'Disahkan Siar Raya';
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-3 px-3 font-bold text-slate-500">${idx + 1}</td>
+                        <td class="py-3 px-3">
+                            <div class="font-bold text-slate-900">${escapeHtml(item.schoolName)}</div>
+                            <div class="text-xs text-slate-500">${escapeHtml(item.teacherName)} • <a href="https://wa.me/${formatMalaysiaPhone(item.teacherPhone)}" target="_blank" class="text-emerald-600 font-semibold hover:underline">${escapeHtml(item.teacherPhone)}</a></div>
+                        </td>
+                        <td class="py-3 px-3">
+                            <span class="font-bold text-slate-800">${escapeHtml(item.category)}</span>
+                            <div class="text-[11px] text-slate-500">Saiz: ${escapeHtml(item.requiredRatio || '16:9')}</div>
+                        </td>
+                        <td class="py-3 px-3">
+                            <div class="font-semibold text-slate-800 truncate max-w-xs">${escapeHtml(item.fileName || 'Rekod Manual')}</div>
+                            <div class="text-[11px] text-slate-500">${escapeHtml(item.mediaMode || '')} (${escapeHtml(item.fileSizeMB || '0')} MB)</div>
+                            ${item.notes ? `<div class="text-[11px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded mt-1 inline-block">Nota: ${escapeHtml(item.notes)}</div>` : ''}
+                        </td>
+                        <td class="py-3 px-3">
+                            <button onclick="toggleSubmissionStatus('${item.id}', '${item.status}')"
+                                    class="px-2.5 py-1 rounded-lg text-xs font-bold transition ${isVerified ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-amber-100 text-amber-800 hover:bg-amber-200'}">
+                                ${isVerified ? '✓ Disahkan Siar Raya' : 'Klik Untuk Sahkan'}
+                            </button>
+                        </td>
+                        <td class="py-3 px-3 text-right space-x-1 whitespace-nowrap">
+                            ${item.fileUrl ? `
+                                <a href="${item.fileUrl}" download="${escapeHtml(item.fileName || 'bahan_specco.mp4')}" target="_blank"
+                                   class="inline-flex items-center gap-1 bg-specco-600 hover:bg-specco-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm transition">
+                                    <i class="fas fa-download"></i> Muat Turun
+                                </a>
+                            ` : ''}
+                            <button onclick="deleteSubmission('${item.id}')"
+                                    class="inline-flex items-center justify-center bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold px-2.5 py-1.5 rounded-lg transition"
+                                    title="Padam Rekod">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        };
+
+        window.toggleSubmissionStatus = async function(id, currentStatus) {
+            const nextStatus = currentStatus === 'Disahkan Siar Raya' ? 'Diterima' : 'Disahkan Siar Raya';
+            if (db && currentUser && !String(id).startsWith('local_')) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_submissions', id);
+                    await updateDoc(docRef, { status: nextStatus });
+                    showToast(`Status dikemaskini kepada: ${nextStatus}`, 'success');
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                const target = submissions.find(s => s.id === id);
+                if (target) target.status = nextStatus;
+                renderAdminTable();
+                renderPublicSchoolList();
+                showToast(`Status dikemaskini kepada: ${nextStatus}`, 'success');
+            }
+        };
+
+        window.deleteSubmission = async function(id) {
+            if (db && currentUser && !String(id).startsWith('local_')) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_submissions', id);
+                    await deleteDoc(docRef);
+                    showToast('Rekod sekolah telah dipadamkan.', 'info');
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                submissions = submissions.filter(s => s.id !== id);
+                renderAdminTable();
+                renderPublicSchoolList();
+                showToast('Rekod sekolah telah dipadamkan.', 'info');
+            }
+        };
+
+        window.adminManualAddSchool = async function() {
+            const schoolName = document.getElementById('admin-add-school').value.trim();
+            const teacherName = document.getElementById('admin-add-teacher').value.trim() || 'Pentadbir Siar Raya';
+            const teacherPhone = document.getElementById('admin-add-phone').value.trim() || '-';
+            const category = document.getElementById('admin-add-category').value;
+
+            if (!schoolName) {
+                showToast('Sila masukkan nama sekolah!', 'error');
+                return;
+            }
+
+            const ratio = category === 'Anugerah Kumpulan Popular' ? '9:16' : '16:9';
+            const newRec = {
+                schoolName,
+                teacherName,
+                teacherPhone,
+                category,
+                requiredRatio: ratio,
+                mediaMode: 'Dikemaskini Oleh Admin (Google Drive)',
+                fileName: 'Telah diterima dalam Google Drive',
+                fileSizeMB: '-',
+                notes: 'Dimasukkan secara manual oleh AJK Siar Raya',
+                fileUrl: 'https://drive.google.com/drive/folders/1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac?usp=sharing',
+                status: 'Disahkan Siar Raya',
+                submittedAt: new Date().toLocaleString('ms-MY', { dateStyle: 'medium', timeStyle: 'short' }),
+                timestamp: Date.now()
+            };
+
+            if (db && currentUser) {
+                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'specco_submissions');
+                await addDoc(colRef, newRec);
+            } else {
+                newRec.id = 'local_' + Date.now();
+                submissions.unshift(newRec);
+                renderAdminTable();
+                renderPublicSchoolList();
+            }
+
+            document.getElementById('admin-add-school').value = '';
+            document.getElementById('admin-add-teacher').value = '';
+            document.getElementById('admin-add-phone').value = '';
+            showToast(`Sekolah ${schoolName} berjaya ditambah ke senarai!`, 'success');
+        };
+
+        window.updateAnnouncement = async function() {
+            const text = document.getElementById('admin-announcement-input').value.trim();
+            if (!text) {
+                showToast('Sila masukkan teks pengumuman!', 'error');
+                return;
+            }
+            document.getElementById('announcement-text').textContent = text;
+            if (db && currentUser) {
+                try {
+                    const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
+                    await setDoc(settingsRef, { announcement: text, gasWebhookUrl }, { merge: true });
+                } catch (e) {
+                    console.warn(e);
+                }
+            }
+            showToast('Pengumuman aplikasi berjaya dikemaskini!', 'success');
+        };
+
+        window.saveGasWebhookUrl = async function() {
+            gasWebhookUrl = document.getElementById('gas-webhook-input').value.trim();
+            if (db && currentUser) {
+                try {
+                    const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
+                    await setDoc(settingsRef, { gasWebhookUrl }, { merge: true });
+                } catch (e) {
+                    console.warn(e);
+                }
+            }
+            showToast('URL Google Apps Script Web App telah disimpan!', 'success');
+        };
+
+        window.adminAddCustomMenu = async function() {
+            const title = document.getElementById('admin-menu-title').value.trim();
+            const content = document.getElementById('admin-menu-content').value.trim();
+            if (!title || !content) {
+                showToast('Sila isi nama menu dan kandungannya!', 'error');
+                return;
+            }
+            const menuObj = { title, content, createdAt: Date.now() };
+            if (db && currentUser) {
+                const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'specco_menus');
+                await addDoc(colRef, menuObj);
+            } else {
+                menuObj.id = 'menu_' + Date.now();
+                customMenus.push(menuObj);
+                renderCustomMenus();
+            }
+            document.getElementById('admin-menu-title').value = '';
+            document.getElementById('admin-menu-content').value = '';
+            showToast(`Menu "${title}" telah ditambah ke bar navigasi!`, 'success');
+        };
+
+        window.deleteCustomMenu = async function(id) {
+            if (db && currentUser && !String(id).startsWith('menu_')) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'specco_menus', id));
+            } else {
+                customMenus = customMenus.filter(m => m.id !== id);
+                renderCustomMenus();
+            }
+            showToast('Menu tambahan telah dipadamkan.', 'info');
+        };
+
+        function renderCustomMenus() {
+            const navContainer = document.getElementById('custom-menu-nav');
+            const adminList = document.getElementById('admin-custom-menu-list');
+
+            navContainer.innerHTML = customMenus.map(m => `
+                <button onclick="openCustomMenuView('${m.id}')" id="custom-btn-${m.id}"
+                        class="custom-nav-btn px-5 py-3.5 text-sm font-semibold flex items-center gap-2 whitespace-nowrap text-slate-600 hover:text-specco-600 transition">
+                    <i class="fas fa-bookmark text-specco-500"></i>
+                    <span>${escapeHtml(m.title)}</span>
+                </button>
+            `).join('');
+
+            if (adminList) {
+                adminList.innerHTML = customMenus.map(m => `
+                    <div class="flex items-center justify-between text-xs bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-200">
+                        <span class="font-semibold truncate">${escapeHtml(m.title)}</span>
+                        <button onclick="deleteCustomMenu('${m.id}')" class="text-rose-600 hover:underline font-bold">Padam</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        window.openCustomMenuView = function(menuId) {
+            const menu = customMenus.find(m => m.id === menuId);
+            if (!menu) return;
+            switchMainView('custom');
+            document.getElementById('custom-view-title').textContent = menu.title;
+            document.getElementById('custom-view-body').textContent = menu.content;
+            const btn = document.getElementById(`custom-btn-${menuId}`);
+            if (btn) btn.classList.add('tab-active');
+        };
+
+        window.exportSubmissionsCSV = function() {
+            if (submissions.length === 0) {
+                showToast('Tiada data untuk dieksport!', 'error');
+                return;
+            }
+            const headers = ['Bil', 'Nama Sekolah', 'Kategori', 'Nisbah Video', 'Nama Guru', 'No Telefon', 'Jenis Bahan', 'Nama Fail', 'Status', 'Masa Hantar'];
+            const rows = submissions.map((s, i) => [
+                i + 1,
+                `"${(s.schoolName || '').replace(/"/g, '""')}"`,
+                `"${(s.category || '').replace(/"/g, '""')}"`,
+                `"${s.requiredRatio || '16:9'}"`,
+                `"${(s.teacherName || '').replace(/"/g, '""')}"`,
+                `"${(s.teacherPhone || '').replace(/"/g, '""')}"`,
+                `"${(s.mediaMode || '').replace(/"/g, '""')}"`,
+                `"${(s.fileName || '').replace(/"/g, '""')}"`,
+                `"${s.status || 'Diterima'}"`,
+                `"${s.submittedAt || ''}"`
+            ]);
+            const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `Senarai_Penghantaran_Bahan_SPECCO_${Date.now()}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            showToast('Fail CSV berjaya dimuat turun!', 'success');
+        };
+
+        window.copyDriveLink = function() {
+            copyTextToClipboard('https://drive.google.com/drive/folders/1ZXNGbjIrGTIhMb392hevM73Nw1BLjuac?usp=sharing');
+            showToast('Pautan Google Drive berjaya disalin!', 'success');
+        };
+
+        window.copyGasCode = function() {
+            const code = document.getElementById('gas-code-block').innerText;
+            copyTextToClipboard(code);
+            showToast('Kod Google Apps Script berjaya disalin!', 'success');
+        };
+
+        function copyTextToClipboard(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            tempInput.remove();
+        }
+
+        window.openGDriveGuideModal = function() {
+            const modal = document.getElementById('gdrive-guide-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.closeGDriveGuideModal = function() {
+            const modal = document.getElementById('gdrive-guide-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function formatMalaysiaPhone(phone) {
+            let digits = String(phone || '').replace(/\D/g, '');
+            if (digits.startsWith('0')) digits = '6' + digits;
+            return digits || '60162864598';
+        }
+
+        async function initFirebaseConnection() {
+            try {
+                app = initializeApp(activeConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                storage = getStorage(app);
+
+                try {
+                    const cred = await signInAnonymously(auth);
+                    currentUser = cred.user;
+                } catch (authErr) {
+                    console.warn('Anonymous auth belum diaktifkan, menggunakan akses terus melalui Rules:', authErr);
+                    currentUser = { uid: 'public-specco-user' };
+                }
+
+                // Listen to Submissions Collection (Real-time sync ke semua peranti)
+                const subCol = collection(db, 'artifacts', appId, 'public', 'data', 'specco_submissions');
+                onSnapshot(subCol, (snap) => {
+                    const list = [];
+                    snap.forEach(d => list.push({ id: d.id, ...d.data() }));
+                    list.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                    submissions = list;
+                    renderPublicSchoolList();
+                    renderAdminTable();
+                }, (err) => {
+                    console.warn('Firestore submissions listener warning:', err);
+                });
+
+                // Listen to App Settings (Announcement & GAS Webhook)
+                const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
+                onSnapshot(settingsDoc, (snap) => {
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        if (data.announcement) {
+                            document.getElementById('announcement-text').textContent = data.announcement;
+                            document.getElementById('admin-announcement-input').value = data.announcement;
+                        }
+                        if (data.gasWebhookUrl) {
+                            gasWebhookUrl = data.gasWebhookUrl;
+                            document.getElementById('gas-webhook-input').value = data.gasWebhookUrl;
+                        }
+                    }
+                }, (err) => {
+                    console.warn('Settings listener warning:', err);
+                });
+
+                // Listen to Custom Menus
+                const menuCol = collection(db, 'artifacts', appId, 'public', 'data', 'specco_menus');
+                onSnapshot(menuCol, (snap) => {
+                    const mList = [];
+                    snap.forEach(d => mList.push({ id: d.id, ...d.data() }));
+                    mList.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+                    customMenus = mList;
+                    renderCustomMenus();
+                }, (err) => {
+                    console.warn('Menus listener warning:', err);
+                });
+
+            } catch (e) {
+                console.warn('Running in local fallback mode:', e);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            selectCategory('semarak_seni');
+            renderPublicSchoolList();
+            initFirebaseConnection();
+        });
+    </script>
+</body>
+</html>
