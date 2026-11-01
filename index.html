@@ -63,22 +63,35 @@
         .animate-pulse-soft {
             animation: pulse-soft 2s infinite;
         }
+        /* Marquee Animation (Kanan ke Kiri) */
+        @keyframes marquee-rl {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee-rl {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee-rl 30s linear infinite;
+            will-change: transform;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-800">
 
     <!-- Top Announcement Banner -->
-    <div id="announcement-bar" class="bg-amber-500 text-slate-950 px-4 py-2.5 text-sm font-medium shadow-sm">
-        <div class="max-w-6xl mx-auto flex items-center justify-between gap-3">
-            <div class="flex items-center gap-2.5">
-                <span class="bg-slate-900 text-amber-400 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider flex items-center gap-1 shrink-0">
+    <div id="announcement-bar" class="bg-amber-500 text-slate-950 px-4 py-2.5 text-sm font-medium shadow-sm overflow-hidden flex items-center">
+        <div class="max-w-6xl mx-auto flex items-center justify-between gap-3 w-full">
+            <div class="flex items-center gap-2.5 w-full overflow-hidden relative">
+                <span class="bg-slate-900 text-amber-400 text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wider flex items-center gap-1 shrink-0 z-10">
                     <i class="fas fa-bullhorn"></i> Makluman
                 </span>
-                <p id="announcement-text" class="truncate sm:whitespace-normal">
-                    Selamat datang ke Sistem Penghantaran Bahan Audio & Video SPECCO. Sila pastikan nisbah saiz video mengikut ketetapan pertandingan sebelum memuat naik!
-                </p>
+                <div class="overflow-hidden w-full relative h-5">
+                    <p id="announcement-text" class="absolute left-0 top-0 animate-marquee-rl font-bold text-slate-900">
+                        Selamat datang ke Sistem Penghantaran Bahan Audio & Video SPECCO. Sila pastikan nisbah saiz video mengikut ketetapan pertandingan sebelum memuat naik!
+                    </p>
+                </div>
             </div>
-            <span id="cloud-status" class="text-xs px-2 py-0.5 rounded-full bg-amber-600/20 text-slate-900 font-semibold shrink-0 flex items-center gap-1.5">
+            <span id="cloud-status" class="text-xs px-2 py-0.5 rounded-full bg-amber-600/20 text-slate-900 font-semibold shrink-0 flex items-center gap-1.5 z-10">
                 <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span> Sistem Aktif
             </span>
         </div>
@@ -641,16 +654,22 @@
                 <!-- ADMIN TOOLS GRID: Announcement, Add School Manually, Add Custom Menu -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     
-                    <!-- Tool 1: Kemaskini Pengumuman -->
-                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-                        <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
-                            <i class="fas fa-bullhorn text-amber-500"></i>
-                            Pengumuman Dalam Aplikasi
-                        </h3>
-                        <textarea id="admin-announcement-input" rows="3"
-                                  placeholder="Tulis pengumuman terkini untuk peserta..."
-                                  class="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm outline-none focus:border-specco-600"></textarea>
-                        <button onclick="updateAnnouncement()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs sm:text-sm transition">
+                    <!-- Tool 1: Kemaskini Pengumuman & Gambar -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2 mb-3">
+                                <i class="fas fa-bullhorn text-amber-500"></i>
+                                Pengumuman Dalam Aplikasi
+                            </h3>
+                            <textarea id="admin-announcement-input" rows="2"
+                                      placeholder="Tulis pengumuman terkini untuk peserta..."
+                                      class="w-full p-3 rounded-xl border border-slate-300 text-xs sm:text-sm outline-none focus:border-specco-600 mb-2"></textarea>
+                            
+                            <label class="block text-xs font-bold text-slate-600 mb-1">Muat Naik Gambar (Pilihan)</label>
+                            <input type="file" id="admin-announcement-image" accept="image/*" 
+                                   class="w-full border border-slate-300 rounded-lg p-2 text-xs bg-slate-50 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-100 file:text-amber-800 hover:file:bg-amber-200">
+                        </div>
+                        <button onclick="updateAnnouncement()" id="btn-update-announcement" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs sm:text-sm transition mt-2">
                             Kemaskini Pengumuman
                         </button>
                     </div>
@@ -824,6 +843,24 @@
         </div>
     </div>
 
+    <!-- MODAL: PENGUMUMAN POP-UP (AUTOLOAD & MANDATORY) -->
+    <div id="announcement-popup-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col transform transition-all scale-95 opacity-0" id="announcement-popup-content">
+            <div class="bg-amber-500 text-slate-950 px-6 py-4 flex items-center justify-between">
+                <h3 class="font-extrabold text-lg flex items-center gap-2"><i class="fas fa-bullhorn"></i> Pengumuman Terkini</h3>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto max-h-[70vh] flex flex-col items-center">
+                <img id="popup-image" src="" class="hidden w-full rounded-xl shadow-sm border border-slate-200 object-contain max-h-64">
+                <p id="popup-text" class="text-sm sm:text-base text-slate-700 whitespace-pre-line leading-relaxed text-center font-medium w-full"></p>
+            </div>
+            <div class="bg-slate-50 px-6 py-4 flex justify-center border-t border-slate-200">
+                <button onclick="closeAnnouncementPopup()" class="w-full bg-specco-600 hover:bg-specco-700 text-white font-bold py-3 rounded-xl shadow-md transition text-base">
+                    Faham & Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Toast / Message Modal (No alert() used) -->
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
@@ -866,6 +903,10 @@
         let selectedFile = null;
         let detectedAspectRatio = null;
         let gasWebhookUrl = "";
+        
+        let hasShownPopup = false;
+        let currentAnnouncementText = '';
+        let currentAnnouncementImage = '';
 
         // Category Definitions
         const CATEGORIES = {
@@ -1598,22 +1639,63 @@
             showToast(`Sekolah ${schoolName} berjaya ditambah ke senarai!`, 'success');
         };
 
+        window.openAnnouncementPopup = function() {
+            const modal = document.getElementById('announcement-popup-modal');
+            const content = document.getElementById('announcement-popup-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        };
+
+        window.closeAnnouncementPopup = function() {
+            const modal = document.getElementById('announcement-popup-modal');
+            const content = document.getElementById('announcement-popup-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        };
+
         window.updateAnnouncement = async function() {
             const text = document.getElementById('admin-announcement-input').value.trim();
+            const imageFile = document.getElementById('admin-announcement-image').files[0];
+            const btn = document.getElementById('btn-update-announcement');
+
             if (!text) {
                 showToast('Sila masukkan teks pengumuman!', 'error');
                 return;
             }
-            document.getElementById('announcement-text').textContent = text;
-            if (db && currentUser) {
-                try {
-                    const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
-                    await setDoc(settingsRef, { announcement: text, gasWebhookUrl }, { merge: true });
-                } catch (e) {
-                    console.warn(e);
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Memuat Naik & Mengemaskini...`;
+
+            let imageUrl = currentAnnouncementImage;
+
+            try {
+                if (imageFile) {
+                    const imgRef = storageRef(storage, 'specco_settings/' + Date.now() + '_' + imageFile.name);
+                    const uploadTask = await uploadBytesResumable(imgRef, imageFile);
+                    imageUrl = await getDownloadURL(uploadTask.ref);
                 }
+
+                if (db && currentUser) {
+                    const settingsRef = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
+                    await setDoc(settingsRef, { announcement: text, announcementImage: imageUrl, gasWebhookUrl }, { merge: true });
+                }
+                showToast('Pengumuman aplikasi berjaya dikemaskini!', 'success');
+                document.getElementById('admin-announcement-image').value = '';
+            } catch (e) {
+                console.warn(e);
+                showToast('Ralat mengemaskini pengumuman.', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `Kemaskini Pengumuman`;
             }
-            showToast('Pengumuman aplikasi berjaya dikemaskini!', 'success');
         };
 
         window.saveGasWebhookUrl = async function() {
@@ -1796,15 +1878,37 @@
                     console.warn('Firestore submissions listener warning:', err);
                 });
 
-                // Listen to App Settings (Announcement & GAS Webhook)
+                // Listen to App Settings (Announcement & GAS Webhook & Popup)
                 const settingsDoc = doc(db, 'artifacts', appId, 'public', 'data', 'specco_settings', 'main');
                 onSnapshot(settingsDoc, (snap) => {
                     if (snap.exists()) {
                         const data = snap.data();
+                        
                         if (data.announcement) {
                             document.getElementById('announcement-text').textContent = data.announcement;
                             document.getElementById('admin-announcement-input').value = data.announcement;
+                            
+                            // Pop-up Logic: Wajib keluar automatik untuk tatapan pengguna
+                            if (data.announcement !== currentAnnouncementText || data.announcementImage !== currentAnnouncementImage || !hasShownPopup) {
+                                currentAnnouncementText = data.announcement;
+                                currentAnnouncementImage = data.announcementImage || '';
+                                
+                                document.getElementById('popup-text').textContent = data.announcement;
+                                const imgEl = document.getElementById('popup-image');
+                                
+                                if (data.announcementImage) {
+                                    imgEl.src = data.announcementImage;
+                                    imgEl.classList.remove('hidden');
+                                } else {
+                                    imgEl.src = '';
+                                    imgEl.classList.add('hidden');
+                                }
+                                
+                                openAnnouncementPopup();
+                                hasShownPopup = true;
+                            }
                         }
+                        
                         if (data.gasWebhookUrl) {
                             gasWebhookUrl = data.gasWebhookUrl;
                             document.getElementById('gas-webhook-input').value = data.gasWebhookUrl;
