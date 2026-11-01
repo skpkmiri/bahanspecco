@@ -1424,10 +1424,11 @@
                         </td>
                         <td class="py-3 px-3 text-right space-x-1 whitespace-nowrap">
                             ${item.fileUrl ? `
-                                <a href="${item.fileUrl}" download="${escapeHtml(item.fileName || 'bahan_specco.mp4')}" target="_blank"
-                                   class="inline-flex items-center gap-1 bg-specco-600 hover:bg-specco-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm transition">
+                                <button onclick="triggerDownload(this.dataset.url, this.dataset.filename)"
+                                        data-url="${item.fileUrl}" data-filename="${escapeHtml(item.fileName || 'bahan_specco.mp4')}"
+                                        class="inline-flex items-center gap-1 bg-specco-600 hover:bg-specco-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm transition">
                                     <i class="fas fa-download"></i> Muat Turun
-                                </a>
+                                </button>
                             ` : ''}
                             <button onclick="deleteSubmission('${item.id}')"
                                     class="inline-flex items-center justify-center bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold px-2.5 py-1.5 rounded-lg transition"
@@ -1438,6 +1439,84 @@
                     </tr>
                 `;
             }).join('');
+        };
+
+        window.triggerDownload = async function(url, filename) {
+            if (!url) {
+                showToast('Pautan fail tidak dijumpai.', 'error');
+                return;
+            }
+
+            // 1. Jika URL adalah blob: (Fail disimpan sementara di peranti orang lain)
+            if (url.startsWith('blob:')) {
+                showToast('Makluman: Ini adalah pautan sementara peranti. Sila semak folder Google Drive untuk fail penuh.', 'info');
+                window.open(url, '_blank');
+                return;
+            }
+
+            // 2. Jika URL adalah Base64 (Selesaikan isu "Check internet connection")
+            if (url.startsWith('data:')) {
+                try {
+                    showToast('Sedang memproses fail ke dalam memori...', 'info');
+                    const parts = url.split(',');
+                    const mime = parts[0].match(/:(.*?);/)[1];
+                    const bstr = atob(parts[1]);
+                    let n = bstr.length;
+                    const u8arr = new Uint8Array(n);
+                    while (n--) {
+                        u8arr[n] = bstr.charCodeAt(n);
+                    }
+                    const blob = new Blob([u8arr], { type: mime });
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(() => window.URL.revokeObjectURL(blobUrl), 10000);
+                } catch (e) {
+                    console.error(e);
+                    showToast('Ralat memproses fail setempat.', 'error');
+                }
+                return;
+            }
+
+            // 3. Jika URL dari Firebase Storage
+            try {
+                showToast('Sedang menyedut fail dari pelayan (Sila tunggu sebentar)...', 'info');
+                
+                // Ambil sebagai blob untuk paksa muat turun tanpa crash
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Rangkaian disekat (CORS) atau terputus');
+                
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                
+                setTimeout(() => window.URL.revokeObjectURL(blobUrl), 10000);
+                showToast('Muat turun berjaya dimulakan!', 'success');
+            } catch (err) {
+                console.warn('Gagal fetch terus (Isu CORS/Saiz fail). Beralih ke tab selamat...', err);
+                
+                // Fallback: Jika CORS sekat fail besar, buka di tab baru supaya pelayar mainkan video.
+                // Admin boleh klik kanan -> "Save Video As" atau tekan butang Download dari pelayar.
+                const a = document.createElement('a');
+                a.href = url;
+                a.target = '_blank';
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                showToast('Fail dibuka di tab baharu. Sila klik 3 titik pada video dan pilih "Download".', 'info');
+            }
         };
 
         window.toggleSubmissionStatus = async function(id, currentStatus) {
